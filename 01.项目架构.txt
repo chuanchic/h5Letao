@@ -1,0 +1,8 @@
+1.前端展示(移动)
+    Mui, zepto, artTemplate, iconFont
+  后台管理(PC)
+    Bootstrap, jQuery, echarts, artTemplate, iconFont
+2.服务层
+    Nodejs, express
+3.数据层
+    MySql
