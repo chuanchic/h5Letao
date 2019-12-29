@@ -129,7 +129,6 @@ ul {
     /*因为左侧侧边栏是固定布局，并且宽度180px，所以右侧主体需要距离左边180px才行*/
     padding-left: 180px;
     height: 1000px;
-    background-color: pink;
     /*因为 右侧 - 头部 是固定布局，不占位置，所以设置间距50px，不然会挡住内容部分*/
     padding-top: 50px;
     /*侧边栏切换，添加过渡动画*/
@@ -178,7 +177,17 @@ ul {
     height: 400px;
 }
 
-
+/*设置表格里的内容居中*/
+.table.table-bordered th,
+.table.table-bordered td {
+    /*水平居中*/
+    text-align: center;
+    /*
+    垂直居中，因为Bootstrap也设置了vertical-align: top，所以我们设置的会被覆盖，需要提高权重才行
+    所以这样：.table.table-bordered就可以提高权重
+    */
+    vertical-align: middle;
+}
 
 
 
