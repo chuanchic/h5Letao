@@ -21,12 +21,10 @@
     <script src="./lib/bootstrap-validator/js/bootstrapValidator.js"></script>
     <!--引入插件：进度条js-->
     <script src="./lib/nprogress/nprogress.js"></script>
-    <!--引入数据可视化图表echarts-->
-    <script src="./lib/echarts/echarts.min.js"></script>
     <!--引入公共js-->
     <script src="./js/common.js"></script>
     <!--引入自定义的js-->
-    <script src="./js/index.js"></script>
+    <script src="./js/user.js"></script>
 
 </head>
 <body>
@@ -52,7 +50,7 @@
             包括字体图标和文本内容
             这儿给a标签设置样式，让a标签的可点击区域最大
             -->
-            <li><a href="user.html"><i class="glyphicon glyphicon-user"></i><span>用户管理</span></a></li>
+            <li><a href="user.html" class="current"><i class="glyphicon glyphicon-user"></i><span>用户管理</span></a></li>
             <li>
                 <!--分类管理不需要跳转，只需要展开二级导航，所以href作如下处理-->
                 <a href="javascript:;" class="category"><i class="glyphicon glyphicon-list"></i><span>分类管理</span></a>
@@ -84,14 +82,8 @@
         <!--Bootstrap - 组件 - 路径导航(面包屑导航) 下，复制代码进来，如下-->
         <ol class="breadcrumb mt_20">
             <li><a href="index.html">管理系统</a></li>
-            <li class="active">首页</li>
+            <li class="active">用户管理</li>
         </ol>
-
-        <div class="lt_content">
-            <!--准备两个具备宽高的echarts容器-->
-            <div class="echarts_1 pull-left"></div>
-            <div class="echarts_2 pull-right"></div>
-        </div>
     </div>
 
 </div>

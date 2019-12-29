@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>乐淘商城</title>
+    <!--引入bootstrap样式-->
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.css">
+    <!--引入第三方插件：表单校验样式-->
+    <link rel="stylesheet" href="./lib/bootstrap-validator/css/bootstrapValidator.css">
+    <!--引入自己定义的样式-->
+    <link rel="stylesheet" href="./css/common.css">
+    <!--引入插件：进度条样式-->
+    <link rel="stylesheet" href="./lib/nprogress/nprogress.css">
+
+    <!--引入jQuery-->
+    <script src="./lib/jquery/jquery.js"></script>
+    <!--引入bootstrap-->
+    <script src="./lib/bootstrap/js/bootstrap.js"></script>
+    <!--引入第三方插件：表单校验-->
+    <script src="./lib/bootstrap-validator/js/bootstrapValidator.js"></script>
+    <!--引入公共js-->
+    <script src="./js/common.js"></script>
+    <!--引入自定义的js-->
+    <script src="./js/login.js"></script>
+    <!--引入插件：进度条js-->
+    <script src="./lib/nprogress/nprogress.js"></script>
+</head>
+<body class="body_bg">
+
+    <!--面板需要版心，加container-->
+    <div class="container">
+        <!--
+        面板需要做响应式处理：大屏的情况下，显示三分之一宽度大小，加col-lg-4：12/4=3
+        大屏的情况下，让面板在水平方向居中，加col-lg-offset-4
+        添加距离上边的间距150
+        row用来抵消父元素的padding，不需要可以不加
+        -->
+        <div class="col-lg-4 col-lg-offset-4 mt_150">
+            <!--
+            Bootstrap - 组件 - 面板
+            默认颜色panel-default变为蓝色panel-primary
+            -->
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">后台管理系统</h3>
+                </div>
+                <div class="panel-body">
+                    <!--
+                    添加表单：Bootstrap - 全局CSS样式 - 表单 - 水平排列的表单
+                    删掉第三行的 form-group
+                    -->
+                    <form class="form-horizontal" id="form">
+                        <div class="form-group">
+                            <!--col-sm-2宽度占了2份，不够，修改成3份col-sm-3，同时将另一份col-sm-10修改成col-sm-9，9份，共12份-->
+                            <label for="username" class="col-sm-3 control-label">用户名：</label>
+                            <div class="col-sm-10">
+                                <!--将type="email"修改成type="text"，去掉邮箱输入错误弹框提示-->
+                                <input type="text" name="username" class="form-control" id="username" placeholder="请输入用户名">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="col-sm-3 control-label">密 码：</label>
+                            <div class="col-sm-9">
+                                <input type="password" name="password" class="form-control" id="password" placeholder="请输入密码">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <!--
+                            相对左边间距占三份col-sm-offset-2修改为col-sm-offset-3，大小为6份
+                            第一个按钮左浮动，第二个按钮右浮动
+                            -->
+                            <div class="col-sm-offset-3 col-sm-6">
+                                <!--添加重置、登录按钮，登录按钮蓝色-->
+                                <button type="reset" class="btn btn-default pull-left">重置</button>
+                                <button type="submit" class="btn btn-primary pull-right">登录</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
