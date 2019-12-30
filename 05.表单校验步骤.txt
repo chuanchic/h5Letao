@@ -1,0 +1,86 @@
+
+表单校验步骤
+
+1、引包
+<script src="./lib/bootstrap-validator/js/bootstrapValidator.js"></script>
+
+2、
+给form表单添加id
+<form id="form">
+给input输入框添加name
+<input type="text" name="categoryName" class="form-control" placeholder="请输入一级分类">
+
+3、初始化插件并使用
+$('#form').bootstrapValidator({
+    //配置校验时的图标显示，默认是bootstrap风格，字体图标：在 Bootstrap - 组件 - Glyphicons 字体图标 里查找
+    feedbackIcons: {
+        //校验成功时候，显示的图标
+        valid: 'glyphicon glyphicon-ok',
+        //校验失败时候
+        invalid: 'glyphicon glyphicon-remove',
+        //校验中时候
+        validating: 'glyphicon glyphicon-refresh'
+    },
+    //配置字段，字段是和input输入框的name相匹配
+    field: {
+        //用户名字段
+        username: {
+            //配置校验规则
+            validators: {
+                //用户名不能为空
+                notEmpty: {
+                    message: "用户名不能为空"
+                },
+                //长度2-6位
+                stringLength: {
+                    min: 2,
+                    max: 6,
+                    message: "用户名长度2-6位"
+                },
+                //专门用于回调的规则
+                callback: {
+                    message: "用户名不存在"
+                }
+            }
+        },
+        ...
+    }
+});
+
+4、添加表单校验成功事件, 阻止默认的表单提交, 通过ajax进行提交
+$('#form').on("success.form.bv", function(e) {
+    // 阻止默认的提交
+    e.preventDefault();
+    // 通过 ajax 提交
+    $.ajax({
+        type: "post",
+        url: "/category/addTopCategory",
+        data: $('#form').serialize(),
+        dataType: "json",
+        success: function( info ) {
+            if ( info.success ) {
+                // 重置表单内容和状态
+                $('#form').data("bootstrapValidator").resetForm(true);
+                // 关闭模态框
+                $('#addModal').modal("hide");
+                // 重新渲染第一页
+                currentPage = 1;
+                render();
+            }
+        }
+    })
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
