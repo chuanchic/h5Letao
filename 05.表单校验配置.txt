@@ -1,17 +1,31 @@
 
 表单校验步骤
 
-1、引包
-<script src="./lib/bootstrap-validator/js/bootstrapValidator.js"></script>
+1、引包（依赖于bootstrap）
+引入css文件
+<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" href="lib/bootstrap-validator/css/bootstrapValidator.css">
+引入js文件
+<script src="lib/jquery/jquery.js"></script>
+<script src="lib/bootstrap/js/bootstrap.js"></script>
+<script src="lib/bootstrap-validator/js/bootstrapValidator.js"></script>
 
 2、
 给form表单添加id
 <form id="form">
 给input输入框添加name
 <input type="text" name="categoryName" class="form-control" placeholder="请输入一级分类">
+如果不是input输入框也需要表单校验的话，比如下拉菜单，那么可以添加隐藏的input输入框
+<input type="hidden" name="brandLogo">，在其他地方给name赋值就行了
+如果有些值暂时是写死的，可以这样
+<input type="hidden" name="hot" value="1">
 
 3、初始化插件并使用
 $('#form').bootstrapValidator({
+
+    //指定不校验的类型，默认为[':disabled', ':hidden', ':not(:visible)'],可以不设置
+    excluded: [':disabled', ':hidden', ':not(:visible)'],
+
     //配置校验时的图标显示，默认是bootstrap风格，字体图标：在 Bootstrap - 组件 - Glyphicons 字体图标 里查找
     feedbackIcons: {
         //校验成功时候，显示的图标
@@ -21,6 +35,7 @@ $('#form').bootstrapValidator({
         //校验中时候
         validating: 'glyphicon glyphicon-refresh'
     },
+
     //配置字段，字段是和input输入框的name相匹配
     field: {
         //用户名字段
@@ -45,9 +60,10 @@ $('#form').bootstrapValidator({
         },
         ...
     }
+
 });
 
-4、添加表单校验成功事件, 阻止默认的表单提交, 通过ajax进行提交
+4、当表单校验成功时，会触发`success.form.bv`事件，此时会提交表单，需要阻止表单的自动提交，使用ajax进行提交
 $('#form').on("success.form.bv", function(e) {
     // 阻止默认的提交
     e.preventDefault();
@@ -70,6 +86,7 @@ $('#form').on("success.form.bv", function(e) {
         }
     })
 })
+
 
 
 

@@ -7,3 +7,9 @@ ajaxSuccess    ajax请求成功的时候
 ajaxSend       ajax请求发送之前调用
 ajaxStart      整个页面里第一个ajax请求发送时调用
 ajaxStop       整个页面里所有的ajax请求完成时调用
+
+jquery的全局事件需要给document注册（固定写法）：
+
+$(document).ajaxStart(function () {
+  console.log("ajaxStart在开始一个ajax请求时触发");
+});

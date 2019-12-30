@@ -1,0 +1,27 @@
+
+模板引擎配置
+
+1、引包
+<script src="./lib/artTemplate/template-web.js"></script>
+
+2、配置模板
+<script type="text/html" id="dropdownTpl">
+    {{each rows v i}}
+    <li><a href="#">{{v.categoryName}}</a></li>
+    {{/each}}
+</script>
+
+3、加载数据、渲染模板
+$.ajax({
+    type: "get",
+    url: "/category/queryTopCategoryPaging",
+    data: {
+        page: 1,
+        pageSize: 100
+    },
+    dataType: "json",
+    success: function(info) {
+        var htmlStr = template("dropdownTpl", info);
+        $('.dropdown-menu').html(htmlStr);
+    }
+})

@@ -1,0 +1,35 @@
+
+Bootstrap Paginator是一款基于Bootstrap的js分页插件
+GitHub 官网地址：https://github.com/lyonlai/bootstrap-paginator
+
+分页配置
+
+1、引包
+<script src="./lib/bootstrap-paginator/bootstrap-paginator.js"></script>
+
+2、准备分页容器
+<div class="text-right">
+    <ul id="paginator"></ul>
+</div>
+
+3、分页初始化
+$("#paginator").bootstrapPaginator({
+    // 指定 bootstrap 的版本(默认是2)，要和容器ul相对应
+    bootstrapMajorVersion: 3,
+    // 总页数，向上取整
+    totalPages: Math.ceil(info.total / info.size),
+    // 当前页
+    currentPage: info.page,
+    // 给所有的按钮, 添加页码点击事件
+    // 参数：
+    // event：         包装后的事件
+    // originalEvent： 原始事件
+    // type：          点击的是什么类型的按钮，上一页，下一页，首页，...
+    // page：          点击的是哪一页
+    onPageClicked: function (a, b, c, page) {
+        // 更新当前页
+        currentPage = page;
+        // 重新渲染
+        render();
+    }
+});

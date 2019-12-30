@@ -156,6 +156,8 @@ ul {
     padding-left: 180px;
     /*侧边栏切换，添加过渡动画*/
     transition: all 1s;
+    /*调高头部的层级，不让底部的分页控件盖住头部*/
+    z-index: 998;
 }
 
 /*右侧主体 - 头部，当侧边栏隐藏的时候，要修改padding-left*/

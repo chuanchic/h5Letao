@@ -1,2 +1,16 @@
 
-模态框配置参考：Bootstrap -
+模态框配置：
+
+1、配置下拉菜单：Bootstrap - 组件 - 下拉菜单 里复制，放在<div class="modal-body">里
+注意点：复制的代码要遵循Bootstrap的规则，即每一行的最外层都要是<div class="form-group">来包裹，当做一个单独板块。
+       不然表单校验规则所显示的提示信息会错位，因为Bootstrap会在当前即form-group里的最后添加提示信息的元素。
+
+2、配置输入框：Bootstrap - 全局CSS样式 - 表单 - File input
+<div class="form-group">
+    <input type="text" name="brandName" class="form-control" placeholder="请输入二级分类">
+</div>
+
+
+
+
+
