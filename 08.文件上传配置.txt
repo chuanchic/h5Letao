@@ -25,11 +25,11 @@ label通过for与input的id进行关联，这样做的原因是默认的input框
 <!-- multiple指定多文件上传，不传就是单文件上传 -->
 <input id="fileupload" type="file" style="display: none" name="files" data-url="server/php/" multiple>
 
-2、通过jQuery-File-Upload插件上传文件
+3、通过jQuery-File-Upload插件上传 单文件
 $("#fileupload").fileupload({
       // 配置返回数据格式
       dataType:"json",
-      // 上传完成图片后, 调用的回调函数
+      // 上传图片完成后, 调用的回调函数
       // e：事件对象
       // data：通过data.result.picAddr可以获取上传后的图片地址
       done:function (e, data) {
@@ -39,3 +39,38 @@ $("#fileupload").fileupload({
         $('#imgBox img').attr("src", imgUrl);
       }
 });
+
+4、通过jQuery-File-Upload插件上传 多文件
+// 定义 用来存储已上传图片 的数组
+var picArr = [];
+// 多文件上传时, 插件会遍历选中的图片, 发送多次请求, 将来响应多次
+// 每次响应都会调用一次 done 方法
+$('#fileupload').fileupload({
+    // 返回的数据格式
+    dataType: "json",
+    // 文件上传完成时调用的回调函数
+    done: function( e, data ) {
+        // 往数组的最前面追加 图片对象，data.result 是后台响应的内容
+        picArr.unshift( data.result );
+
+        // 往 imgBox 最前面追加 img 元素
+        $('#imgBox').prepend('<img src="'+ data.result.picAddr +'" width="100" alt="">');
+
+        // 通过判断数组长度, 如果数组长度大于 3, 将数组最后一项移除
+        if ( picArr.length > 3 ) {
+            // 移除数组的最后一项
+            picArr.pop();
+
+            // 移除imgBox中的最后一个图片
+            // $('#imgBox img').eq(-1)
+            $('#imgBox img:last-of-type').remove();
+        }
+
+        // 如果处理后, 图片数组的长度为 3, 那么就通过校验, 手动将picStatus置成VALID
+        if ( picArr.length === 3 ) {
+            $('#form').data("bootstrapValidator").updateStatus("picStatus", "VALID");
+        }
+    }
+});
+
+
