@@ -1,36 +1,50 @@
+
+/*给每一个购物车条目 设置固定高度*/
 .lt_main .cart_item {
   height: 110px;
 }
 
+/*类 class="mui-table-cell"里会设置：display: table-cell，
+  会导致里面的布局大小由内容撑开，即如果类cart_info不设置宽度，那么宽度就会为0
+  修改方式：display: block，设置为块级就行了*/
+.lt_main .mui-table-cell {
+  display: block;
+}
+
+/*设置购物车条目 左侧图片容器 左浮动*/
 .lt_main .cart_img {
   float: left;
   width: 60px;
   height: 90px;
 }
-
+/*设置购物车条目 右侧内容容器 溢出隐藏*/
 .lt_main .cart_info {
   overflow: hidden;
   height: 90px;
   padding: 0 10px;
 }
+
+/*设置商品名称*/
 .lt_main .cart_info .pro_name {
   color: #000;
 }
+
+/*设置商品现价*/
 .lt_main .cart_info .price {
   color: red;
 }
+
+/*设置商品原价*/
 .lt_main .cart_info .oldPrice {
   text-decoration: line-through;
 }
 
-.lt_main .mui-table-cell {
-  display: block;
-}
-
+/*设置所有的尺码按钮居左显示*/
 .lt_size {
   text-align: left;
 }
 
+/*设置商品数量加减框居左显示*/
 .lt_num {
   text-align: left;
 }

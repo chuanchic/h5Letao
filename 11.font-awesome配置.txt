@@ -1,0 +1,8 @@
+
+官网：http://fontawesome.dashgame.com
+
+1、font-awesome 字体图标
+<span class="fa fa-arrows-alt"></span>
+<span class="fa fa-adjust"></span>
+<span class="fa fa-back"></span>
+

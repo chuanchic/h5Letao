@@ -23,6 +23,7 @@
     <!-- 返回上一页
          history.back();
          history.go(-1);
+         javascript:; 意思就是什么事情都不做
     -->
     <a href="javascript: history.go(-1);" class="icon_left"><i class="mui-icon mui-icon-back"></i></a>
     <h3>搜索中心</h3>
@@ -80,13 +81,15 @@
   </div>
 </div>
 
-
+<!--模板引擎 - 历史记录-->
 <script type="text/html" id="historyTpl">
   {{ if arr.length === 0 }}
     <p>没有更多数据了</p>
   {{ else }}
     <div class="title">
+      <!--左浮动-->
       <span class="mui-pull-left">搜索历史</span>
+      <!--右浮动-->
       <span class="mui-pull-right btn_empty"><i class="fa fa-trash"></i>清空记录</span>
     </div>
     <div class="content">
@@ -102,14 +105,11 @@
   {{ /if }}
 </script>
 
-
-
 <script src="./lib/mui/js/mui.js"></script>
 <script src="./lib/zepto/zepto.min.js"></script>
 <script src="./lib/artTemplate/template-web.js"></script>
 <script src="./js/common.js"></script>
 <script src="./js/search.js"></script>
-
 
 </body>
 </html>

@@ -8,6 +8,7 @@
    -->
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
   <link rel="stylesheet" href="./lib/mui/css/mui.css">
   <!-- 引入 font-awesome 字体图标库 -->
   <link rel="stylesheet" href="./lib/fa/css/font-awesome.min.css">
@@ -23,10 +24,7 @@
 <!--<span class="fa fa-adjust"></span>-->
 <!--<span class="fa fa-back"></span>-->
 
-
-
-
-<!-- 全屏容器 -->
+<!-- 全屏容器，最外层容器，充满整个屏幕 -->
 <div class="lt_container">
   <!-- 乐淘头部 -->
   <div class="lt_header">
@@ -35,16 +33,16 @@
     <a href="search.html" class="icon_right"><i class="fa fa-search"></i></a>
   </div>
 
-
   <!-- 乐淘主体 -->
   <div class="lt_main">
+    <!--mui区域滚动-->
     <div class="mui-scroll-wrapper">
       <div class="mui-scroll">
         <!--这里放置真实显示的DOM内容-->
 
         <!-- 轮播图 -->
         <div class="mui-slider">
-          <!-- 图片的容器 -->
+          <!-- 图片的容器。如果支持无线轮播，需要加类：mui-slider-loop，同时准备第一张、最后一张假图片-->
           <div class="mui-slider-group mui-slider-loop">
             <!-- 准备假图片, 最后一张 -->
             <div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="./images/banner6.png" /></a></div>
@@ -69,8 +67,8 @@
             <div class="mui-indicator"></div>
             <div class="mui-indicator"></div>
           </div>
-        </div>
 
+        </div>
 
         <!-- 导航 -->
         <div class="lt_nav">
@@ -167,7 +165,6 @@
     </div>
   </div>
 
-
   <!-- 乐淘底部 -->
   <div class="lt_footer">
     <ul>
@@ -199,14 +196,9 @@
   </div>
 </div>
 
-
-
-
-
 <script src="./lib/mui/js/mui.js"></script>
 <script src="./lib/zepto/zepto.min.js"></script>
 <script src="./js/common.js"></script>
-
 
 </body>
 </html>

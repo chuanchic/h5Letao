@@ -1,8 +1,11 @@
+
+/*退出按钮容器*/
+.btnWrapper {
+  padding: 10px;
+}
+/*退出按钮*/
 .logoutBtn {
   padding: 5px 0;
   margin: 0;
 }
 
-.btnWrapper {
-  padding: 10px;
-}

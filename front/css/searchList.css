@@ -1,36 +1,48 @@
+
+/*排序容器*/
 .lt_sort {
   height: 30px;
   line-height: 30px;
   background-color: #EEEEEE;
   font-size: 12px;
+  /*内容居中*/
   text-align: center;
 }
+/*排序容器 a*/
 .lt_sort a {
+  /*左浮动，一行显示4个*/
   float: left;
   width: 25%;
   color: #666;
 }
+/*排序容器 a 选中的*/
 .lt_sort a.current {
+  /*字体颜色*/
   color: orange;
 }
+/*排序容器 a 字体图标*/
 .lt_sort a i {
+  /*字体图标设置间距*/
   margin: 0 3px;
 }
 
+/*加载框*/
 .loading {
   width: 50px;
   height: 50px;
   border: 3px solid #069;
+  /*绝对定位*/
   position: absolute;
+  /*水平方向居中，通过left和translateX共同实现*/
   left: 50%;
   transform: translateX(-50%);
+  /*距离顶部*/
   top: 150px;
-  /* 使用动画 */
-  /* 动画名称 动画时间 */
+  /* 使用动画：动画名称 动画时间 */
   animation: rotate 1s infinite ease-in-out;
 }
 
-/* 动画 */
+/* 定义旋转动画 */
 @keyframes rotate {
   from {
     transform: translateX(-50%) rotate(0deg);

@@ -39,7 +39,9 @@
         <!-- 排序 -->
         <div class="lt_sort">
           <a href="#">上架时间<i class="fa fa-angle-down"></i></a>
+          <!--保存排序时需要传给后台的key：price-->
           <a data-type="price" href="#" >价格<i class="fa fa-angle-down"></i></a>
+          <!--保存排序时需要传给后台的key：num-->
           <a data-type="num" href="#">库存<i class="fa fa-angle-down"></i></a>
           <a href="#">折扣<i class="fa fa-angle-down"></i></a>
         </div>
@@ -47,6 +49,8 @@
         <!-- 产品模块 -->
         <div class="lt_product">
           <!-- 挖个坑 -->
+          <!-- 接口请求之前，给lt_product容器添加loading元素，
+               接口请求之后，给lt_product容器添加内容元素，覆盖掉loading元素-->
           <!--<div class="loading"></div>-->
         </div>
 
@@ -85,16 +89,23 @@
   </div>
 </div>
 
-
+<!-- 模板 - 商品列表 -->
 <script type="text/html" id="productTpl">
+<!--   清除浮动 -->
   <ul class="mui-clearfix">
     {{ each data v i }}
+      <!--商品条目，占一行的一半大小-->
       <li class="lt_product_item">
+        <!--因为mui框架里a标签的click事件无响应，所以此种方式无效，只能通过注册tap事件来实现跳转-->
         <a href="product.html?productId={{ v.id }}" data-id="{{ v.id }}">
+          <!--商品图片-->
           <img src="{{ v.pic[0].picAddr }}" alt="">
+          <!--商品名称-->
           <p class="mui-ellipsis-2">{{ v.proName }}</p>
           <p>
+            <!--现价-->
             <span class="price">¥{{ v.price }}</span>
+            <!--原价-->
             <span class="oldPrice">¥{{ v.oldPrice }}</span>
           </p>
           <button class="mui-btn mui-btn-primary">立即购买</button>
@@ -104,15 +115,11 @@
   </ul>
 </script>
 
-
-
-
 <script src="./lib/mui/js/mui.js"></script>
 <script src="./lib/zepto/zepto.min.js"></script>
 <script src="./lib/artTemplate/template-web.js"></script>
 <script src="./js/common.js"></script>
 <script src="./js/searchList2.js"></script>
-
 
 </body>
 </html>

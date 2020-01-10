@@ -1,0 +1,65 @@
+
+官网：https://dev.dcloud.net.cn/mui/
+
+引包
+<link rel="stylesheet" href="./lib/mui/css/mui.css">
+<script src="./lib/mui/js/mui.js"></script>
+
+mui的字体图标
+<span class="mui-icon mui-icon-weixin"></span>
+<span class="mui-icon mui-icon-mic"></span>
+
+配置区域滚动
+在 文档 - UI组件 - scroll(区域滚动)
+<div class="mui-scroll-wrapper">
+	<div class="mui-scroll">
+		<!--这里放置真实显示的DOM内容-->
+	</div>
+</div>
+其中：mui-scroll就是很长的可以滚动的子元素，mui-scroll-wrapper就是全屏的容器
+与此同时，mui-scroll-wrapper的父元素要设置相对定位
+
+// 对页面中所有的区域滚动进行初始化
+// mui('.mui-scroll-wrapper')会返回一个mui实例
+mui('.mui-scroll-wrapper').scroll({
+  indicators: false, // 是否显示滚动条
+  deceleration: 0.0005 // 阻尼系数, 系数越小, 越灵敏
+});
+
+配置轮播图
+在 文档 - UI组件 - gallery(图片轮播)
+// mui框架默认会初始化轮播组件，但是动态获取的数据有延迟，所以就无法成功初始化
+// 需要在获取到数据之后，手动进行轮播初始化
+// 获得slider插件对象
+ var gallery = mui('.mui-slider');
+ gallery.slider({
+   interval: 5000 //自动轮播周期，若为0则不自动播放，默认为0；
+ });
+
+配置对话框
+在 文档 - UI组件 - dialog(消息框) - confirm(确认框)
+
+配置消息提示框
+在 文档 - UI组件 - dialog(消息框) - toast(消息提示框)
+
+配置下拉刷新
+在 文档 - 下拉刷新 - 单webview模式
+
+配置上拉加载
+在 文档 - 上拉加载
+
+配置数字加减框
+在 文档 - UI组件 - number box(数字输入框)
+// 同轮播图初始化一样，也需要手动初始化
+mui(".mui-numbox").numbox()
+
+配置登录页面输入表单
+在 文档 - UI组件 - input(输入表单)
+
+配置列表
+在 文档 - UI组件 - list(列表) - 右侧添加导航箭头
+
+配置滑动触发列表项菜单
+在 新手指南 - 快速体验 - 下载Hello mui App - list(列表) - 滑动触发列表项菜单
+
+

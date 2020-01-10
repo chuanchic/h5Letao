@@ -31,15 +31,12 @@
     <div class="mui-scroll-wrapper">
       <div class="mui-scroll">
         <!--这里放置真实显示的DOM内容-->
-
         <!-- 挖了个大坑 -->
-
       </div>
     </div>
   </div>
 
-
-  <!-- 前往购物车 -->
+  <!-- 前往购物车，布局：在页面底部，左边一个按钮，右边两个按钮 -->
   <div class="lt_go_cart">
     <a href="cart.html" class="mui-pull-left">前往购物车</a>
     <div class="mui-pull-right">
@@ -48,19 +45,9 @@
     </div>
   </div>
 
-
 </div>
 
-<!--
-  标准语法  {{ }}
-  原生语法  <% %>
-
-  原始语法输出 <%= %>
-
-  官网地址:
-  https://aui.github.io/art-template/
--->
-
+<!--商品详情-->
 <script type="text/html" id="productTpl">
 
   <!-- 轮播图 -->
@@ -90,19 +77,27 @@
     </div>
   </div>
 
-  <!-- 标题 -->
+<!--  item_box是抽出来的公共类，实现公共样式，比如统一的边距、横线-->
+
+  <!-- 标题：水平一行显示 -->
   <div class="lt_pro_name item_box">
     <strong>{{ proName }}</strong>
   </div>
 
-  <!-- 价格模块 -->
+  <!-- 价格：水平一行显示 -->
   <div class="lt_price item_box">
     <span>价格:</span>
     <span class="price">¥{{ price }}</span>
     <span class="oldPrice">¥{{ oldPrice }}</span>
   </div>
 
-  <!-- 尺码 -->
+  <!-- 尺码：水平一行显示 -->
+  <!--
+  标准语法  {{ }}
+  原生语法  <% %>
+  原始语法输出 <%= %>
+  官网地址：https://aui.github.io/art-template/
+  -->
   <div class="lt_size item_box">
     尺码:
     <%
@@ -115,11 +110,9 @@
     <% } %>
   </div>
 
-
-  <!-- 数量 -->
+  <!-- 数量：水平一行显示 -->
   <div class="lt_num item_box">
     <span>数量:</span>
-
     <!-- 数字框 -->
     <!-- data-numbox-step 步长, 每次点击加几 -->
     <!-- data-numbox-max 最大值 -->
@@ -129,26 +122,21 @@
       <input class="mui-numbox-input" type="number" />
       <button class="mui-btn mui-numbox-btn-plus" type="button">+</button>
     </div>
-
     <span class="last">剩余数量: {{ num }}双</span>
-
   </div>
 
-  <!-- 商品描述 -->
+  <!-- 商品描述：水平一行显示 -->
   <div class="lt_desc item_box">
     详情: {{ proDesc }}
   </div>
+
 </script>
-
-
-
 
 <script src="./lib/mui/js/mui.js"></script>
 <script src="./lib/zepto/zepto.min.js"></script>
 <script src="./lib/artTemplate/template-web.js"></script>
 <script src="./js/common.js"></script>
 <script src="./js/product.js"></script>
-
 
 </body>
 </html>

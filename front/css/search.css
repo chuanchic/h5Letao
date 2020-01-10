@@ -1,3 +1,24 @@
+
+.lt_search {
+  padding: 10px;
+}
+.lt_search .search_input {
+  height: 34px;
+  line-height: 34px;
+  font-size: 12px;
+  margin: 0;
+  border: 1px solid #007AFF;
+  border-radius: 5px;
+  padding-left: 15px;
+  padding-right: 55px;
+}
+.lt_search .search_btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border-radius: 0 5px 5px 0;
+}
+
 .lt_history {
   font-size: 12px;
   color: #666;
@@ -7,21 +28,25 @@
   height: 30px;
   line-height: 30px;
 }
-
 .lt_history .content {
+  /*添加边框*/
   border: 1px dashed red;
 }
 .lt_history .content li {
+  /*设置固定高度，对于浮动元素就会独占一整行，就不需要通过设置清浮动来解决重叠在一起的问题*/
   height: 30px;
   line-height: 30px;
+  /*添加下边框*/
   border-bottom: 1px dashed red;
 }
 .lt_history .content li:last-child {
+  /*清除最后一个元素的下边框*/
   border-bottom: none;
 }
 .lt_history .content li a {
   padding: 0 10px;
 }
 .lt_history .content li i {
+  /*设置行高，让字体图标垂直居中，因为默认的情况下mui设置的line-height:1，为1倍的字体大小*/
   line-height: 30px;
 }

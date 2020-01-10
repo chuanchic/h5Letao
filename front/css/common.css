@@ -1,3 +1,5 @@
+
+/*如果最外层是全屏容器的话，html和body必须设置100%*/
 html, body {
   width: 100%;
   height: 100%;
@@ -14,34 +16,41 @@ img {
   display: block;
 }
 
-
-
-/* 全屏容器 */
+/* 全屏容器，最外层容器，充满整个屏幕 */
 .lt_container {
   width: 100%;
   height: 100%;
   background-color: white;
+  /*移动端必须设置最大宽度、最小宽度*/
   max-width: 640px;
   min-width: 320px;
+  /*设置水平居中*/
   margin: 0 auto;
+  /*因为子元素(lt_header)是绝对定位，所以父元素要是相对定位*/
   position: relative;
+  /*去掉滚动条*/
   overflow: hidden;
-
+  /*添加上下间距，去掉顶部和底部所占的空间*/
   padding-top: 45px;
   padding-bottom: 55px;
 }
 
+/*乐淘 - 头部*/
 .lt_header {
   width: 100%;
   height: 45px;
   background-color: #069;
+  /*添加绝对定位，那么父元素(lt_container)要是相对定位*/
   position: absolute;
   left: 0;
+  /*位于顶部显示*/
   top: 0;
+  /*因为左右按钮是45px，所以添加45px的左右间距*/
   padding: 0 45px;
 }
 .lt_header .icon_left,
 .lt_header .icon_right {
+  /*左右图标用绝对定位，比浮动定位要好，好处：左右图标不占标准流，是否存在不影响其他布局*/
   position: absolute;
   top: 0;
   width: 45px;
@@ -51,132 +60,171 @@ img {
   color: #fff;
 }
 .lt_header .icon_left {
+  /*位于左边显示*/
   left: 0;
 }
 .lt_header .icon_right {
+  /*位于右边显示*/
   right: 0;
 }
 
+/*乐淘 - 顶部 - 标题*/
 .lt_header h3 {
   height: 45px;
   line-height: 45px;
   text-align: center;
   font-size: 20px;
   color: #fff;
+  /*mui默认会有margin，所以去掉默认的margin*/
   margin: 0;
   font-weight: normal;
 }
 
-
-
+/*乐淘 - 底部*/
 .lt_footer {
   width: 100%;
   height: 55px;
   background-color: #069;
+  /*设置绝对定位*/
   position: absolute;
   left: 0;
+  /*位于底部显示*/
   bottom: 0;
 }
 .lt_footer li {
+  /*li要设置浮动，然后每个宽度占25%*/
   float: left;
   width: 25%;
   text-align: center;
 }
 .lt_footer li a {
+  /*a标签显示的范围是包裹内容，设置成块级，范围会填充父元素*/
   display: block;
   color: #fff;
+  /*设置高度*/
   height: 55px;
+  /*设置顶部间距*/
   padding-top: 8px;
 }
+/*mui默认会给p标签添加样式，所以覆盖一下*/
 .lt_footer li a p {
   color: #fff;
   margin: 0;
 }
-
+/*给a标签设置选中的样式*/
 .lt_footer li a.current {
   color: orange;
 }
+/*给a标签设置选中时候 p标签的样式*/
 .lt_footer li a.current p{
   color: orange;
 }
 
+/*乐淘 - 中间内容部分*/
 .lt_main {
+  /*
+  设置宽高填充父元素，因为lt-header,lt-footer是绝对定位，脱离标准流不占位置，所以lt_main的顶部和底部会被遮挡
+  修改方式：1、给父元素添加顶部、底部的padding
+           2、给子元素添加顶部、底部的padding
+  结论：第一种方式要好，第二种方式的话，如果给子元素的子元素添加绝对定位，那么依然会从子元素的最顶部开始
+  */
   width: 100%;
   height: 100%;
   /*background-color: orange;*/
-  /* 子元素是定位布局的, 父元素要加定位 */
+  /* 子元素(mui布局：mui-scroll-wrapper)是定位布局的, 父元素要加定位 */
   position: relative;
 }
 
-
 /* 公用的搜索框样式 */
+
+/*搜索容器*/
 .lt_search {
   padding: 10px;
   position: relative;
 }
+/*搜索 - 输入框*/
 .lt_search .search_input {
   height: 34px;
   line-height: 34px;
   font-size: 12px;
-  padding: 0;
   margin: 0;
   border: 1px solid #007AFF;
   border-radius: 5px;
   padding-left: 15px;
   padding-right: 55px;
+  padding-top: 0;
+  padding-bottom: 0;
 }
+/*搜索 - 确认按钮*/
 .lt_search .search_btn {
+  /*绝对定位在最右边*/
   position: absolute;
   right: 10px;
   top: 10px;
   border-radius: 0 5px 5px 0;
 }
 
-
 /* 公用的产品样式 */
-/* 产品样式 */
+
+/* 商品最外层的容器 */
 .lt_product {
   padding: 10px;
 }
+/*商品条目*/
 .lt_product_item {
+  /*左浮动*/
   float: left;
+  /*宽度48%，水平方向可以放两个条目*/
   width: 48%;
   border: 1px solid #ccc;
   padding: 10px;
   text-align: center;
   margin-bottom: 10px;
 }
+/*商品条目，奇数个，右边的*/
 .lt_product_item:nth-child(2n+1) {
+  /*添加边距*/
   margin-right: 4%;
 }
+/*商品现价*/
 .lt_product_item .price {
   color: red;
 }
+/*商品原价*/
 .lt_product_item .oldPrice {
+  /*添加贯穿线*/
   text-decoration: line-through;
 }
 
+/*商品图片*/
 .lt_product_item img {
+  /*固定大小，避免左右两个高度不一致*/
   width: 150px;
   height: 150px;
+  /*水平居中*/
   margin: 0 auto;
 }
+
+/*商品名称*/
 .lt_product_item .mui-ellipsis-2 {
+  /*固定高度，避免左右两个高度不一致*/
   height: 40px;
 }
 
-
 /* 公用的尺码样式 */
 .lt_size span {
+  /*转成行内块，就可以设置宽高*/
+  display: inline-block;
   width: 25px;
   height: 25px;
   line-height: 25px;
   text-align: center;
   border: 1px solid #ccc;
-  display: inline-block;
   font-size: 12px;
+  /*添加上下间距*/
   margin: 3px 0;
 }
+/*尺码选中样式*/
 .lt_size span.current {
   background-color: orange;
   color: #fff;

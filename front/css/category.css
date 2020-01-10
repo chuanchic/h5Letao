@@ -1,12 +1,9 @@
+
 .lt_category_left {
   float: left;
   width: 90px;
   height: 100%;
   position: relative;
-}
-.lt_category_left li a.current {
-  background-color: #fff;
-  border-right: none;
 }
 .lt_category_left li a {
   display: block;
@@ -15,13 +12,14 @@
   line-height: 50px;
   text-align: center;
   color: #666;
-
   border-right: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
   background-color: #E3E4E5;
 }
-
-
+.lt_category_left li a.current {
+  background-color: #fff;
+  border-right: none;
+}
 
 .lt_category_right {
   height: 100%;
@@ -29,10 +27,12 @@
   position: relative;
 }
 .lt_category_right li {
+  /*默认ul里面的li是独占一整行的，改成左浮动，每个li占33.3%，就能实现一行显示三个*/
   float: left;
   width: 33.3%;
 }
 .lt_category_right li a {
+  /*设置块级显示*/
   display: block;
 }
 .lt_category_right li img {

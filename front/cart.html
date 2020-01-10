@@ -16,7 +16,6 @@
 </head>
 <body>
 
-
 <!-- 全屏容器 -->
 <div class="lt_container">
   <!-- 乐淘头部 -->
@@ -25,22 +24,19 @@
     <h3>购物车</h3>
   </div>
 
-
   <!-- 乐淘主体 -->
   <div class="lt_main">
     <div class="mui-scroll-wrapper">
       <div class="mui-scroll">
 
+        <!--列表-->
         <ul class="mui-table-view">
-
           <!-- 挖个坑 -->
-
         </ul>
 
       </div>
     </div>
   </div>
-
 
   <!-- 乐淘底部 -->
   <div class="lt_footer">
@@ -73,41 +69,58 @@
   </div>
 </div>
 
-
+<!--购物车模板-->
 <script type="text/html" id="cartTpl">
   {{ each arr v i }}
+<!--  购物车列表的每一个条目，同时支持滑动删除-->
+<!--  给每一个条目添加类cart_item，设置固定高度-->
     <li class="mui-table-view-cell mui-transitioning cart_item">
-      <!-- 右侧的菜单 -->
+
+      <!-- 右侧的菜单，滑动删除项，共两项：修改项、删除项 -->
       <div class="mui-slider-right mui-disabled">
+<!--        修改项，添加自定义属性...，用来修改
+            v.id  商品id
+            v.num 商品数量
+            v.productNum 商品总数量
+            v.size 商品大小
+            v.productSize 商品大小范围-->
         <a class="mui-btn mui-btn-primary mui-icon mui-icon-compose btn_edit"
            data-id="{{ v.id }}"
            data-num="{{ v.num }}"
-           data-productNum="{{ v.productNum }}"
+           data-productnum="{{ v.productNum }}"
            data-size="{{ v.size }}"
-           data-productSize="{{ v.productSize }}"
-        ></a>
+           data-productsize="{{ v.productSize }}"></a>
+<!--        删除项，添加自定义属性data-id，用来删除-->
         <a class="mui-btn mui-btn-danger mui-icon mui-icon-trash btn_del"
-           data-id="{{ v.id }}"
-        ></a>
+           data-id="{{ v.id }}"></a>
       </div>
-      <!-- 左侧的内容 -->
+
+      <!-- 左侧的内容，滑动左侧的内容就会出现右侧的菜单项 -->
       <div class="mui-slider-handle">
+<!--        类 class="mui-table-cell"里会设置：display: table-cell，
+            会导致里面的布局大小由内容撑开，即如果类cart_info不设置宽度，那么宽度就会为0
+            修改方式：display: block，设置为块级就行了-->
         <div class="mui-table-cell">
-          <!-- 左侧图片 -->
+
+          <!-- 左侧一张图片 + 下面放一个复选框 -->
           <div class="cart_img">
             <img src="{{ v.pic[0].picAddr }}" alt="">
             <input type="checkbox">
           </div>
-          <!-- 右侧内容 -->
+
+          <!-- 右侧内容，三行内容 -->
           <div class="cart_info">
+<!--            第一行：商品名称-->
             <p class="pro_name">
               {{ v.proName }}
             </p>
+<!--            第二行：现价，原价，多少双-->
             <p>
               <span class="price">¥{{ v.price }}</span>
               <span class="oldPrice">¥{{ v.oldPrice }}</span>
               <span class="mui-pull-right">{{ v.num }}双</span>
             </p>
+<!--            第三行：鞋码-->
             <p>
               鞋码: {{ v.size }}
             </p>
@@ -115,15 +128,16 @@
 
         </div>
       </div>
+
     </li>
   {{ /each }}
 </script>
-
 
 <!-- 编辑框的模板 -->
 <script type="text/html" id="editTpl">
 
   <!-- 尺码 -->
+  <!--    变量 productsize，size 在编辑按钮btn_edit的自定义属性里-->
   <div class="lt_size">
     尺码:
     <%
@@ -133,6 +147,8 @@
       for ( var i = start; i <= end; i++ ) {
     %>
       <!-- 加减之后 i 是数字, size 是字符串, 这里用 == -->
+<!--    添加current类设置高亮选中-->
+<!--    尺码样式在公共样式里common.css-->
       <span class="{{ i == size ? 'current' : '' }}">{{ i }}</span>
     <%
       }
@@ -140,6 +156,7 @@
   </div>
 
   <!-- 数量 -->
+  <!--    变量 productnum，num 在编辑按钮btn_edit的自定义属性里-->
   <div class="lt_num">
     数量:
     <div class="mui-numbox" data-numbox-step='1' data-numbox-min='1' data-numbox-max='{{ productnum }}'>
@@ -151,15 +168,11 @@
 
 </script>
 
-
-
-
 <script src="./lib/mui/js/mui.js"></script>
 <script src="./lib/zepto/zepto.min.js"></script>
 <script src="./lib/artTemplate/template-web.js"></script>
 <script src="./js/common.js"></script>
 <script src="./js/cart.js"></script>
-
 
 </body>
 </html>

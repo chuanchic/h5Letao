@@ -1,7 +1,3 @@
-/**
- * Created by Jepson on 2018/8/23.
- */
-
 
 $(function() {
 
@@ -13,9 +9,8 @@ $(function() {
     url: "/user/queryUserMessage",
     dataType: "json",
     success: function( info ) {
-      console.log( info );
+      // 用户未登录
       if ( info.error === 400 ) {
-        // 用户未登录
         location.href = "login.html";
         return;
       }
@@ -24,8 +19,7 @@ $(function() {
       var htmlStr = template( "userTpl", info );
       $('#userInfo').html( htmlStr );
     }
-  })
-
+  });
 
   // 2. 退出功能
   $('.logoutBtn').click(function() {
@@ -35,14 +29,12 @@ $(function() {
       url: "/user/logout",
       dataType: "json",
       success: function( info ) {
-        console.log( info );
+        // 退出成功, 跳转到登录页
         if ( info.success ) {
-          // 退出成功, 跳转到登录页
           location.href = "login.html";
         }
       }
     })
   })
-
 
 })
