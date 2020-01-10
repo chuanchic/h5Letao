@@ -1,0 +1,87 @@
+
+1、在讨论回流和重绘之前，需要对页面的呈现流程有些了解，页面是怎么把html结合css等显示到浏览器上的？
+
+下面是流程图：
+HTML Source -> Dom Tree(Dom树) ->
+                                  Render Tree(呈现树) -> 绘制页面
+    CSS     -> 样式结构体       ->
+
+1.解析 HTML 以构建 DOM 树：
+浏览器把获取到的 HTML 代码解析成1个 DOM 树，HTML 中的每个标签都是 DOM 树中的1个节点，这里面只有节点没有CSS样式。
+
+2.解析 CSS 样式：
+浏览器把所有样式解析成样式结构体，在解析的过程中会去掉浏览器不能识别的样式，比如 IE 会去掉 -moz 开头的样式，
+而 FF 会去掉 _ 开头的样式。
+
+3.构建渲染树：
+DOM Tree 和样式结构体组合后构建 render tree，render tree 包含 HTML 结构和 CSS 样式，即能识别结构也能识别样式，
+render tree 中每个 节点 都有自己的 样式，而且 render tree 不包含隐藏的节点（比如 display:none 的节点，还有 head 节点），
+一旦 render tree 构建完毕后，浏览器就可以根据 render tree 来绘制页面了。
+
+4.布局渲染树：
+从根节点递归调用，计算每一个元素的大小、位置等，给每个节点在屏幕上的精确坐标。从外层向内层开始布局。
+
+5.绘制渲染树：
+遍历渲染树，每个节点将使用UI后端层来绘制。
+
+2、回流和重绘
+
+回流（reflow）发生在第4阶段：
+当 render tree 中的元素发生影响布局的变化(改变宽高尺寸、修改显示隐藏状态等)，需要重新布局，就会触发回流。
+
+重绘（repaint）发生在第5阶段：
+当 render tree 中的元素发生不影响布局的样式变化(背景颜色、背景图片、字体颜色等)，需要重新渲染，就会触发重绘。
+
+注意：
+1.每个页面至少需要一次回流和重绘。
+2.回流必将引起重绘。
+
+举例：
+var s = document.body.style;
+s.padding = "2px"; // 回流+重绘
+s.border = "1px solid red"; // 再一次 回流+重绘
+s.color = "blue"; // 再一次 重绘
+s.backgroundColor = "#ccc"; // 再一次 重绘
+s.fontSize = "14px"; // 再一次 回流+重绘
+document.body.appendChild(document.createTextNode('abc!'));// 再一次 回流+重绘
+
+解释：
+从以上代码中可以看到几行简单的JS代码就引起了6次左右的回流、重绘。我们知道回流的花销不小，如果每行JS操作都去回流、重绘的话，
+浏览器可能会受不了。因此很多浏览器都会优化这些操作，即浏览器会维护1个队列，把所有引起回流、重绘的操作放入这个队列，
+等JS代码完全执行完成，浏览器就会flush队列，进行一个批处理。这样就会让多次的回流、重绘变成一次回流、重绘。
+因此：
+以上代码不会立即进行回流、重绘，浏览器会将所有的 css 样式操作放入队列中，等 js 执行完成后一次性进行回流、重绘。
+
+题外：
+JS执行线程和UI绘制线程是互斥的，即同一时刻只能有一个在执行。
+
+但是：
+虽然有了浏览器的优化，但是有时候我们写的一些代码可能会强制浏览器提前flush队列，这样浏览器的优化就起不到作用了。
+即当你向浏览器请求一些 style 信息的时候，浏览器为了保证这些信息的准确性，会立即flush队列进行回流、重绘。
+这些 style 信息比如：
+1.offsetTop, offsetLeft, offsetWidth, offsetHeight
+2.scrollTop/Left/Width/Height
+3.clientTop/Left/Width/Height
+4.请求了getComputedStyle(), 或者 IE的 currentStyle
+
+那么如何优化？
+减少回流、重绘的次数，就需要减少对 render tree(渲染树) 的操作。
+1. 不要在for循环中进行获取 style信息 操作。
+2. 使用className修改样式(通过添加 class)，少用style设置样式：style.padding、style.color ...
+3. 让要操作的元素先 display:none ，这时操作这个元素不会触发回流、重绘，因为 display:none 的元素不在 render tree 里。
+这种方式只会触发两次回流、重绘。display:none一次，display:block另一次。
+4. 将需要多次重排(回流)的元素，position属性设为absolute或fixed，这样此元素就脱离了文档流，它的变化不会影响到其他元素。
+例如有动画的 HTML 布局，比如轮播图。
+5. 使用 translate 代替 left/top ，因为 translate 只是视觉上的变化，布局没有变化，即只会触发重绘，不会触发回流。
+6. 通过 opacity 替换 visibility。首先这俩都只会触发重绘，但是修改透明度渲染效率更高。
+
+
+
+
+
+
+
+
+
+
+
